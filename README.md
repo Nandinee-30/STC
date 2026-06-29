@@ -1,174 +1,171 @@
-\# STC – Django Web Application
+# 🚀 STC - Django Web Application
 
+<p align="center">
 
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge\&logo=python)
+![Django](https://img.shields.io/badge/Django-Framework-darkgreen?style=for-the-badge\&logo=django)
+![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge\&logo=sqlite)
+![HTML5](https://img.shields.io/badge/HTML5-Markup-E34F26?style=for-the-badge\&logo=html5)
+![CSS3](https://img.shields.io/badge/CSS3-Styling-1572B6?style=for-the-badge\&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=for-the-badge\&logo=javascript)
+![Git](https://img.shields.io/badge/Git-Version_Control-F05032?style=for-the-badge\&logo=git)
+![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge\&logo=github)
 
-\## Overview
+</p>
 
+<p align="center">
+A Full-Stack Django Web Application developed using Python, Django, SQLite, HTML, CSS and JavaScript.
+</p>
 
+---
 
-STC is a full-stack web application developed using the Django framework. The project follows Django's MVT (Model-View-Template) architecture and demonstrates secure backend development, database integration, and responsive frontend design.
+# 📖 Overview
 
+STC is a Django-based full-stack web application developed following the **Model-View-Template (MVT)** architecture. The project demonstrates backend development, database integration, responsive frontend design, and secure application development using Django best practices.
 
+---
 
-\## Features
+# ✨ Key Features
 
+* 🔐 User Authentication
+* 👤 User Management
+* 📝 CRUD Operations
+* 💾 Database Integration
+* 📂 Static & Media File Handling
+* 📊 Admin Dashboard
+* ⚡ Responsive User Interface
+* ✅ Form Validation
+* 🏗️ Clean MVT Architecture
+* 🔒 Secure Application Structure
 
+---
 
-\* User Authentication (Login \& Registration)
+# 🛠 Tech Stack
 
-\* Admin Dashboard
+| Category           | Technologies            |
+| ------------------ | ----------------------- |
+| 🐍 Language        | Python                  |
+| 🚀 Framework       | Django                  |
+| 💾 Database        | SQLite3                 |
+| 🎨 Frontend        | HTML5, CSS3, JavaScript |
+| 🔧 Version Control | Git                     |
+| ☁️ Repository      | GitHub                  |
 
-\* CRUD Operations
+---
 
-\* Database Integration
+# 📁 Project Structure
 
-\* Responsive User Interface
-
-\* Static \& Media File Management
-
-\* Secure Form Validation
-
-\* Django MVT Architecture
-
-
-
-\## Technology Stack
-
-
-
-\* \*\*Backend:\*\* Python, Django
-
-\* \*\*Frontend:\*\* HTML5, CSS3, JavaScript
-
-\* \*\*Database:\*\* SQLite3
-
-\* \*\*Version Control:\*\* Git \& GitHub
-
-
-
-\## Project Structure
-
-
-
+```text
 STC/
-
-├── manage.py
-
+│── manage.py
+│── requirements.txt
+│── README.md
+│── .gitignore
+│── db.sqlite3
+│
 ├── stc/
-
 ├── stvt/
-
 ├── media/
-
-├── staticfiles/
-
-├── .gitignore
-
-└── README.md
-
+└── staticfiles/
 ```
 
+---
 
+# ⚙️ Installation
 
-\## Installation
+### Clone Repository
 
-
-
-\### Clone the Repository
-
-
-
+```bash
 git clone https://github.com/Nandinee-30/STC.git
+```
 
+### Navigate into Project
 
-
-\### Navigate to the Project
-
-
-
+```bash
 cd STC
+```
 
+### Create Virtual Environment
 
-
-\### Create a Virtual Environment
-
-
-
+```bash
 python -m venv venv
+```
 
+### Activate Virtual Environment
 
+```bash
+venv\Scripts\activate
+```
 
-\### Activate the Virtual Environment
+### Install Dependencies
 
-
-
-\*\*Windows\*\*
-
-
-
-venv\\Scripts\\activate
-
-
-
-\### Install Dependencies
-
-
-
+```bash
 pip install -r requirements.txt
+```
 
+### Apply Migrations
 
-
-\### Apply Database Migrations
-
-
-
+```bash
 python manage.py migrate
+```
 
+### Start Development Server
 
-
-\### Run the Development Server
-
-
-
+```bash
 python manage.py runserver
+```
 
+---
 
+# 🌐 Run Application
 
 Open your browser and visit:
 
-
-
+```text
 http://127.0.0.1:8000/
+```
 
+---
 
+# 📌 Future Enhancements
 
+* 📧 Email Notifications
+* 🔔 Real-Time Features
+* 📱 Improved Mobile Responsiveness
+* ☁️ Cloud Deployment
+* 🔐 Enhanced Security
+* 📊 Analytics Dashboard
 
+---
 
-\## Future Enhancements
+# 🤝 Contributing
 
+Contributions, issues, and feature requests are welcome.
 
+If you'd like to contribute:
 
-\* User Profile Management
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Push the branch
+5. Open a Pull Request
 
-\* Email Notifications
+---
 
-\* REST API Integration
+# 👩‍💻 Author
 
-\* Deployment on Cloud Platform
+### **Nandinee**
 
-\* Performance Optimization
+💼 Aspiring Software Developer
 
+📧 Email: *Add your email here*
 
+🌐 GitHub: https://github.com/Nandinee-30
 
-\## Author
+---
 
+# ⭐ Support
 
+If you found this project useful, consider giving it a **⭐ Star** on GitHub.
 
-\*\*Nandinee\*\*
-
-
-
-GitHub: https://github.com/Nandinee-30
-
-
-
+It motivates developers and helps others discover the project.
