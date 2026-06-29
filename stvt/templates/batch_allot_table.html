@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Batch Allotment Records</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px auto;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #1976d2;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f3f3f3;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Batch Allotment Submissions</h2>
+<form method="post" action="{% url 'download_approved_certificates' %}">
+    {% csrf_token %}
+<table>
+  <thead>
+    <tr>
+      <th>S No</th>
+      <th>Email</th>
+      <th>Unique ID</th>
+      <th>Receipt</th>
+      <th>Name</th>
+      <th>Father's Name</th>
+      <th>College</th>
+      <th>Mobile</th>
+      <th>Address</th>
+      <th>Course</th>
+      <th>Year</th>
+      <th>Duration</th>
+      <th>Branch</th>
+      <th>Start Date</th>
+      <th> Batch Code</th>
+      <th>Project Code</th>
+      <th>Project</th>
+      <th>Report To</th>
+      <th>Photo</th>
+      <th>Action</th>
+      <th>Approval ID Card</th>
+      <th>Approval Certificate</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in data %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ entry.email }}</td>
+      <td>{{ entry.uid }}</td>
+      <td>{{ entry.receipt }}</td>
+      <td>{{ entry.name }}</td>
+      <td>{{ entry.father }}</td>
+      <td>{{ entry.college }}</td>
+      <td>{{ entry.mobile }}</td>
+      <td>{{ entry.address }}</td>
+      <td>{{ entry.course }}</td>
+      <td>{{ entry.year }}</td>
+      <td>{{ entry.duration }}</td>
+      <td>{{ entry.eng_branch }}</td>
+      <td>{{ entry.date }}</td>
+      <td>{{ entry.batch_code}}</td>
+      <td>{{ entry.project_code }}</td>
+      <td>{{ entry.project }}</td>
+      <td>{{ entry.report_to }}</td>
+      <td>
+        {% if entry.photo %}
+          <img src="{{ entry.photo.url }}" alt="Photo" width="50" height="60">
+        {% else %}
+          No Photo
+        {% endif %}
+      </td>
+       <td>
+         <a href="{% url 'delete_entry' entry.id %}">🗑️ Delete</a>
+        </td>
+     <td>
+  <input type="checkbox" name="idcard_approved"
+         value="{{ entry.id }}"
+         onchange="toggleIdCardApproval(this)"
+         {% if entry.is_idcard_approved %}checked{% endif %}>
+  Approved
+</td>
+
+<!--for Certificate Approval-->
+        <td>
+  <input type="checkbox" name="approved"
+         value="{{ entry.id }}"
+         onchange="toggleApproval(this)"
+         {% if entry.is_approved %}checked{% endif %}>
+  Approved
+</td>
+
+    
+       {% empty %}
+     <tr><td colspan="25">No students found.</td></tr>
+      {% endfor %}
+      
+  </tbody>
+</table>
+<div style="text-align:center; margin-top: 20px;">
+  
+    <button type="submit">📥 Download All Approved Certificates</button>
+  
+</div> 
+
+</form>
+<script>
+
+function toggleIdCardApproval(checkbox) {
+    const entryId = checkbox.value;
+    const isApproved = checkbox.checked;
+
+    fetch('/update-idcard-approval/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+            id: entryId,
+            is_idcard_approved: isApproved
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+    });
+}
+
+function toggleApproval(checkbox) {
+    const entryId = checkbox.value;
+    const isActive = checkbox.checked;
+
+    fetch('/update-is-active/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')  // CSRF token is important
+        },
+        body: JSON.stringify({
+            id: entryId,
+            is_approved: isActive
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Utility to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+            const trimmed = cookie.trim();
+            if (trimmed.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(trimmed.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+
+
+</body>
+
+</html>

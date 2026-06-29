@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fees Challan Submissions</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 40px auto;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {  
+           background-color: #007bff;
+           color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align:center">Fees Challan Submissions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S No</th>
+                <th>Email</th>
+                <th>UID</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>College</th>
+                <th>Mobile</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for challan in challans %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ challan.email }}</td>
+                <td>{{ challan.uid }}</td>
+                <td>{{ challan.date }}</td>
+                <td>{{ challan.name }}</td>
+                <td>{{ challan.clg }}</td>
+                <td>{{ challan.mobile }}</td>
+                <td><a href="{% url 'delete_fees_challan' challan.id %}">🗑️Delete</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No challan submissions found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

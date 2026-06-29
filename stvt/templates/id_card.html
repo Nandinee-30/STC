@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Provisional Identity Slip</title>
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px 40px;
+            border: 2px solid #000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        .info {
+            margin: 20px 0;
+            line-height: 1.7;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .photo {
+            float: right;
+            border: 1px solid #000;
+            width: 120px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: -30px;
+        }
+
+        .signature {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature div {
+            text-align: center;
+        }
+
+        hr {
+            margin: 30px 0 10px;
+            border: none;
+            border-top: 1px dashed #000;
+        }
+
+        @media print {
+            #downloadBtn {
+                display: none;
+            }
+        }
+
+        #downloadBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #downloadBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="idCard" style="margin:10px; padding:10px;">
+        <div class="center-text">
+            <p><strong>Training I/C</strong></p>
+            <h2>Locomotive Workshop, Northern Railway, Charbagh, Lucknow</h2>
+            <p>B.Tech/Diploma VT | Unique ID No: <strong>{{challan.uid}}</strong></p>
+            <p>Provisional Identity Slip/VT/2025 (For entry & exit in Loco Workshop Only)</p>
+            <p><strong>#Concerned Shop/Section:</strong>{{entry.report_to}}/Loco/CB/LKO</p>
+        </div>
+
+        <img class="photo" src="{{entry.photo.url}}" alt="Candidate Photo">
+
+        <div class="info">
+            <p><span class="label">Name of Candidate:</span> {{student.name}}</p>
+            <p><span class="label">Father’s Name:</span> {{entry.father}}</p>
+            <p><span class="label">Valid From:</span> {{entry.date|date:"d/m/Y"}} &nbsp;to &nbsp;{{ end_date|date:"d/m/Y" }}</p>
+            <p><span class="label">Year, Branch & Institution:</span> {{entry.course}},&nbsp; {{entry.year}},&nbsp; 
+                  {{entry.eng_branch}},&nbsp;{{challan.clg}}</p>
+            <p><span class="label">Address & Contact:</span> {{entry.address}}, {{challan.mobile}}</p>
+            <p><span class="label">Batch No. & Project Code:</span>&nbsp;{{entry.batch_code}}&nbsp;,&nbsp; {{ entry.project_code}}: &nbsp;{{entry.project}}</p>
+        </div>
+
+        <div class="signature">
+            <div>
+                <hr>
+                Signature of Candidate
+            </div>
+            <div>
+                <hr>
+                For Director<br>STC/CB/LKO
+            </div>
+        </div>
+    </div>
+
+    <button id="downloadBtn" onclick="generatePDF()">Download ID Card</button>
+
+    <!-- ADD THIS SCRIPT FOR html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+    <script>
+        function generatePDF() {
+            const element = document.getElementById('idCard');
+            html2pdf().from(element).save('Provisional_ID_Card.pdf');
+        }
+    </script>
+
+</body>
+</html>

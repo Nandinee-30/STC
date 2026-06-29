@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fees Challan Form - STC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    .form-box {
+      background: #fff;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 550px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1a237e;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 12px 0 5px;
+      color: #333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: #1a237e;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3949ab;
+    }
+
+    .success-msg {
+      background-color: #d0f8ce;
+      color: #2e7d32;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 15px;
+      margin-bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Fees Challan Form</h2>
+    <p><strong>IMPORTANT:</strong> Please contact the office to collect FEE CHALLAN</p>
+
+    <div class="success-msg" id="successMsg">✅ Your Fees Challan form has been submitted!</div>
+
+    <form id="challanForm" method="POST">
+  {% csrf_token %}
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your Email" required />
+
+      <label for="uid">Unique ID Number</label>
+      <select id="uid" name="uid" required>
+        <option value="">Choose</option>
+      </select>
+      <script>
+  // Dropdown populate logic
+  const uidDropdown = document.getElementById("uid");
+  for (let i = 1; i <= 500; i++) {
+    const option = document.createElement("option");
+    const uid = `STVT25/${i.toString().padStart(3, '0')}`; // STVT25/001, STVT25/002 ...
+    option.value = uid;
+    option.textContent = uid;
+    uidDropdown.appendChild(option);
+  }
+
+  // Form submission logic (already present)
+  const form = document.getElementById("challanForm");
+  const successMsg = document.getElementById("successMsg");
+
+  if (localStorage.getItem("challan_submitted") === "true") {
+    successMsg.style.display = "block";
+    localStorage.removeItem("challan_submitted");
+  }
+
+  form.addEventListener("submit", function (e) {
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    localStorage.setItem("challan_submitted", "true");
+    location.reload();
+  });
+</script>
+
+
+      <label for="date">Date of Form Filling</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+      <label for="clg">College Name</label>
+      <input type="text" id="clg" name="clg" placeholder="Enter your college" required />
+
+      <label for="mobile">Mobile No</label>
+      <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" placeholder="Enter your mobile number(+91 or 0 not allowed)" required />
+
+      <input type="submit" value="Submit"/>
+
+    </form>
+  </div>
+
+
+
+
+  <script>
+    const form = document.getElementById("challanForm");
+    const successMsg = document.getElementById("successMsg");
+    // Show message after reload if previously submitted
+    if (localStorage.getItem("challan_submitted") === "true") {
+      successMsg.style.display = "block";
+      localStorage.removeItem("challan_submitted");
+    }
+    form.addEventListener("submit", function (e) {
+      //e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity(); // shows default validation errors
+        return;
+      }
+      localStorage.setItem("challan_submitted", "true");
+      location.reload();
+    });
+  </script>
+
+</body>
+</html>

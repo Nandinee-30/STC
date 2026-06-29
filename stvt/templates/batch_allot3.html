@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Batch Allotment Step 4 - STC</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    .form-container {
+      max-width: 550px;
+      width: 100%;
+      margin: auto;
+      background-color: #fff;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 12px 0 5px;
+      color: #333;
+    }
+
+     select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-group a, .btn-group button {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #1a237e;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+
+  <form id="projectForm" action="/batch_allot4/" method="POST">
+   {% csrf_token %}
+
+    <input type="hidden" name="id" value="{{ entry.id }}">
+    <input type="hidden" name="email" value="{{ entry.email }}">
+    <input type="hidden" name="uid" value="{{ entry.uid }}">
+    <input type="hidden" name="receipt" value="{{entry.receipt }}">
+    <input type="hidden" name="name" value="{{ entry.name }}">
+    <input type="hidden" name="father" value="{{ entry.father }}">
+    <input type="hidden" name="college" value="{{ entry.college }}">
+    <input type="hidden" name="mobile" value="{{ entry.mobile }}">
+    <input type="hidden" name="address" value="{{ entry.address }}">
+    <input type="hidden" name="course" value="{{ entry.course }}">
+    <input type="hidden" name="year" value="{{ entry.year }}">
+    <input type="hidden" name="duration" value="{{ entry.duration }}">
+    <input type="hidden" name="eng_branch" value="{{ entry.eng_branch }}">
+    <input type="hidden" name="date" value="{{entry.date}}">
+    <input type="hidden" name="batch_code" value="{{entry.batch_code}}">
+
+
+  <label for="project_code"><b>Please select the project code</b></label>
+    <select id="project_code" name="project_code" required>
+      <option value="">Choose</option>
+      <!-- Options will be added dynamically -->
+    </select>
+
+        
+
+    <label for="project"><b>Please select the project</b></label>
+    <select id="project" name="project" required>
+      <option value="">Choose</option>
+      <!-- Options will be added dynamically -->
+    </select>
+
+
+<label for="report_to"><b>Please select the report_to</b></label>
+    <select id="report_to" name="report_to" required>
+      <option value="">Choose</option>
+      <!-- Options will be added dynamically -->
+    </select>
+
+
+
+    <div class="btn-group">
+      <a href="javascript:history.back()">Back</a>
+      <button type="submit">Next</button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  const duration = localStorage.getItem("training_duration");
+  const projectCodeSelect = document.getElementById("project_code");
+  const projectTitleSelect = document.getElementById("project");
+  const reportToSelect = document.getElementById("report_to");
+
+  const projectData = {
+    "4 weeks": {
+      "EC-1": {
+        title: "Microsoft used in Electric Lokomotives, its Periodic Overhauling & Testing",
+        report_to: "SSE/E-1/ELPOH"
+      },
+      "EC-2": {
+        title: "Software for the Service Record of Employees",
+        report_to: "SSE/EDPM"
+      },
+      "EC-3": {
+        title: "Data Feeding of Salary of Employees",
+        report_to: "SSE/EDPM"
+      },
+      "EC-4": {
+        title: "Development of Face Identification Software and its implementation",
+        report_to: "Automation/STC"
+      }
+    },
+    "6 weeks": {
+            "EC-5": {
+        title: "Software for the Service Record of Employees and Data Feeding of Salary of Employees",
+        report_to: "SSE/EDPM"
+      },
+      "EC-6": {
+        title: "Software Development for Data Keeping of STC(Joining,Feedback,Training and Exam & Marks etc.)",
+        report_to: "Automation/STC"
+      }
+    }
+  };
+
+  async function populateProjectCodes() {
+    const date = document.querySelector('input[name="date"]').value;
+    const response = await fetch(`/get-project-counts/?date=${date}`);
+    const counts = await response.json();
+
+    projectCodeSelect.innerHTML = '<option value="">Choose</option>';
+
+    if (projectData[duration]) {
+      for (const code in projectData[duration]) {
+        const count = counts[code] || 0;
+        const option = document.createElement("option");
+        option.value = code;
+        option.textContent = `${code}`;
+        if (count >= 15) {
+          option.disabled = true;
+          option.textContent += " - FULL";
+        }
+        projectCodeSelect.appendChild(option);
+      }
+    }
+  }
+
+  // Call initially
+  populateProjectCodes();
+
+  // Re-call when date changes
+  document.querySelector('input[name="date"]').addEventListener("change", populateProjectCodes);
+
+  // Auto-fill project and report_to on selection
+  projectCodeSelect.addEventListener("change", function () {
+    const selectedCode = this.value;
+    if (projectData[duration] && projectData[duration][selectedCode]) {
+      const project = projectData[duration][selectedCode];
+
+      projectTitleSelect.innerHTML = `<option value="${project.title}" selected>${project.title}</option>`;
+      reportToSelect.innerHTML = `<option value="${project.report_to}" selected>${project.report_to}</option>`;
+    } else {
+      projectTitleSelect.innerHTML = `<option value="">Choose</option>`;
+      reportToSelect.innerHTML = `<option value="">Choose</option>`;
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

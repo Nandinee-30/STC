@@ -1,0 +1,348 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Northern Railway</title>
+<link rel="shortcut&#32;icon" href="https://stccharbagh.in/frontend/images/logoq.jpg"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+	    @import url("https://stccharbagh.in/frontend/css/bootstrap.min.css");
+		@import url("https://stccharbagh.in/frontend/css/font-awesome.min.css");
+		@import url("https://stccharbagh.in/frontend/css/jquery.smartmenus.bootstrap.css");
+		@import url("https://stccharbagh.in/frontend/css/owl.carousel.css");
+		@import url("https://stccharbagh.in/frontend/engine1/style.css");
+        @import url("https://stccharbagh.in/frontend/Scripts/jquery-ui.min.css");
+        @import url("https://stccharbagh.in/frontend/site/writereaddata");
+        @import url("https://stccharbagh.in/frontend/css/style2.css");
+        @import url("https://dayndone.com/northern_railway/frontend/en_Themes/demo.css");
+        
+    </style>
+	
+	  <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>	
+    <link rel="stylesheet" type="text/css" href="https://stccharbagh.in/frontend/en_Themes/demo.css" />
+    <link rel="stylesheet" type="text/css" href="https://stccharbagh.in/frontend/en_Themes/style.css" id="MSS" />
+	<link rel="stylesheet" type="text/css" href="https://stccharbagh.in/frontend/css/responsive.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162768160-1"></script>
+
+</head>
+<body class="homebody" style="font-size:16px;">
+
+<style>
+@media only screen and (min-width: 1401px) {
+  #module {
+    left:-12px;
+  }  
+  #training {
+    left:100px;
+    position: relative;
+  }
+  #supervisor {
+    left:-5px;
+    position: relative;
+  } 
+ }
+@media only screen and (max-width: 1400px) {
+   #module {
+    left:12px;
+  }
+#supervisor {
+    /*left:-15px;*/
+     right: -5px;
+    position: relative;
+  } 
+ 
+}
+#header1{
+padding-top:12px;
+margin-top:3px;
+padding-bottom:1px;
+color:white;
+font-family: 'Roboto';font-size: 15px; 
+
+}
+.font{
+    color: white;
+font-family: 'Source Sans Pro';
+}
+#menu{
+color: #0f1f3d;
+}
+#header2{
+padding-top:5px;
+margin-top:3px;
+padding-bottom:1px;
+color:white;
+font-family: 'Roboto';font-size: 5px;
+float:right;
+}
+</style>
+
+<div class="col-sm-12 font" style="background:#003C72; padding: 8px 0;" >
+<div class="row" style="margin: 5px;">
+<div class="col-sm-4"  >
+  <span id="datetime">Loading date and time...</span>
+</div>
+<!-- JavaScript -->
+<script>
+  function updateDateTime() {
+    const now = new Date();
+
+    // Format date and time
+    const options = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+
+    const formattedDateTime = now.toLocaleString('en-GB', options);
+
+    document.getElementById('datetime').innerText = formattedDateTime;
+  }
+
+  // Update every second
+  setInterval(updateDateTime, 1000);
+  updateDateTime(); // initial call
+</script>
+   
+
+   
+
+<div class="col-sm-6" id="header2">
+  <p style="margin-left:0px;margin: 7px 0px 10px;float:right;"> 
+    <a style="color:white;font-size:15px;padding-right:0px;" href="../index">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a style="color:#FEDA6F;font-size:15px;padding-right:0px" href="../reg">
+    <i style="color:#FEDA6F;" class="fa fa-user"></i> Registration</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a style="color:#FEDA6F;font-size:15px;padding-right:0px" href="../student_login">
+    <i style="color:#FEDA6F;" class="fa fa-key"></i> Login</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a style="color:white;font-size:15px;padding-right:0px" href="{% url 'admin_login'%}">
+    <i class="fa fa-user" title="Admin Login"></i></a>
+     </p>
+</div>
+
+</div>
+</div>    
+
+<style>
+  .container1 {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .container1 img {vertical-align: middle;height:432px}
+
+  .container1 .content1 {
+    position: absolute;
+    top: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    color: white;
+    height:117px;
+    width: 100%;
+    padding-top: 25px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+  }
+  .container2 {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .container2 img {vertical-align: middle;height:370px}
+
+  .container2 .content {
+    position: absolute;
+    top: 45px;
+    background: rgba(4, 13, 63, 0.8); /* Fallback color */
+    background: rgba(4, 13, 63, 0.8); /* Black background with 0.5 opacity */
+    color: white;
+    height:272px;
+    width: 90%;
+    margin-left:34px;
+    padding-top: 19px;
+    padding-left: 15px;
+    padding-bottom: 0px;
+
+  }
+  #bg{
+    background: #f1f1f1;
+  }
+
+  .tt {
+    margin-top: -20px;
+    font-size: 25px;
+    
+}
+
+img#supervisor {
+    height: 82px;
+    width: 117px;
+    position: relative;
+
+
+
+    top: 5px;
+    left: -2px;
+}
+
+p.font.code.tit {
+    margin-top: -36px;
+    margin-left: 300px;
+    font-size: 25px;
+       
+}
+ @media only screen and (max-width: 800px) {
+  .inner {
+   left: 20px;
+   position: relative;
+ }
+ .container1 img {
+    vertical-align: middle;
+    height: 245px;
+    
+}
+.tt {
+    margin-top: -30px;
+    font-size: 17px; 
+}
+.ff {
+    position: absolute;
+    top: 54px;    
+}
+.fd {
+    position: relative;
+    top: 30px;
+}
+
+}
+</style>
+
+<div class="col-sm-12">
+  <div class="row">
+       <div class="container1">
+            <img src="https://stccharbagh.in/frontend/images/img/r1.jpeg" alt="Notebook" style="width:100%;">
+            <div class="content1">
+
+<div class="ff" style="text-align: left;">
+  <a href="https://stccharbagh.in/">
+    <img id="supervisor" src="https://stccharbagh.in/frontend/images/img/rail.png" style="vertical-align: top;">
+  </a>
+  <div style="display: inline-block; margin-left: 10px;">
+    <p class="font" style="margin: 0; font-size: 25px;">पर्यवेक्षक प्रशिक्षण केंद्र, लखनऊ</p>
+    <p class="font" style="margin: 0; font-size: 25px;">Supervisors Training Center, Lucknow</p>
+  </div>
+                <div class="fd">		    		
+                    <div class="font code" style="float:right;padding-right:17px;position: relative;bottom: 55px;">
+                        <p style="font-size:18px;margi:-36px 31px 10px;" class="drobtn font"><a href="../contact" style="color:white;font-size:18px;">Contact</a><p>
+                    </div>
+                    <div style="float:right;padding-right:17px;position: relative;bottom: 55px;">
+                        <p style="font-size:18px;margi:-22px 7px 10px;" class="drobtn font"><a href="../about"style="color:white;font-size:18px;">About STC</a><p>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+<div class="container-fluid"></div>
+<div class="inner">
+<h3>Contact Form</h3>
+<!-- Header End -->
+	<!-- Body Start -->
+<div class="container">
+	<div class="row">
+     <div class="col-lg-6 col-md-6">
+
+		<div class="contact-form" >			    
+			<form action="{% url 'contact' %}" method="post" style="text-align: center;">
+        {% csrf_token %}
+				<div class="form-group">
+					<label class="control-label" style="float: left;">Full Name*</label>
+					<input class="form-control" type="text" name="name" id="name" required="" placeholder="Your Full Name">															
+				</div>
+				<div class="form-group">
+					<label class="control-label" style="float: left;">Email Address*</label>
+					<input class="form-control" type="email" name="email" id="email" required="" placeholder="Your Email Address">															
+				</div>
+				<div class="form-group">
+					<label class="control-label" style="float: left;">Mobile No.*</label>			
+		            <input class="form-control" type="text" name="mobile" id="mobile" required=""   maxlength="10" placeholder="Your Mobile No." onkeypress="return event.charCode >= 48 &amp;&amp; event.charCode <= 57">															
+				</div>					
+	 </div>
+				<div class="form-group mt-1">
+					<label class="control-label" style="float: left;">Subject*</label>
+					<input class="form-control" type="text" name="subject" id="subject" required="" placeholder="Your Subject">															
+				</div>
+				<div class="form-group mt-1">	
+					<div class="field">
+						<label class="control-label" style="float: left;">Message*</label>
+						<textarea rows="2" class="form-control" id="message" name="message" required="" placeholder="Your Message "></textarea>
+					</div>
+				</div>
+				<button class="btn btn-primary btn-xs" type="submit" style="font-size: 18px;" data-btntext-sending="Sending...">Submit Request</button>    
+				
+        {% if success %}
+          <p style="color: green;">Your message has been submitted successfully.</p>
+        {% endif %}
+
+      </br>
+			</form>
+		</div>
+					
+	<div class="col-md-12 col-md-6">
+	    <div class="inner" style="overflow-x:auto">
+            <h3>Contact Us</h3>
+            <p class="hidden">&nbsp;</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14241.621071984318!2d80.9302393!3d26.8270594!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdf7e5991866405c2!2sSTC%20Lucknow!5e0!3m2!1sen!2sin!4v1602682309951!5m2!1sen!2sin" width="500" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            <h4>Postal Address</h4>
+            <p>151, Barron Rd, Cantonment,<br /> Lucknow, Uttar Pradesh 226005</p>
+            <p><b>Phone Number:</b> xxxxxxxxxx</p>
+            <!--p><b>Email:</b> principal.stc.nr@gmail.com</p!-->
+            <p><b>General information: </b><a href="mailto:info@stccharbagh.in">info@stccharbagh.in</a></p>
+        </div>
+	</div>
+    </div>		
+</div>
+				
+</div>
+
+
+<div class="col-sm-12 footer-bg" style="background:#0E1B3D;background-image:url('https://stccharbagh.in/img/rail-footer.png');background-position: right;background-repeat: no-repeat;padding-top:20px;padding-bottom:20px">
+<div class="col-sm-1"></div>
+
+<div class="col-sm-2 font" style="color:white;padding-top:0px;margin-right:40px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;font-size:19px;">
+<span style="color:#FEDA6F;font-size:18px;border-bottom:3px solid rgba(255,255,255,.3);">Web Links</span></p>
+<p style="color:black;font-size:15px;padding-bottom:10px;line-height:0.9px;"><a href="https://irctc.co.in" style="font-size:15px;color:white;" >IRCTC Website</a></p>
+</div>
+<div class="col-sm-2 font" style="color:white;padding-top:0px;margin-right:40px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;
+font-size:19px;"><a href="#" style="color:#0E1B3D;font-size:18px;">.</a></p>
+<p class="font" style="color:black;line-height:0.9px;padding-bottom:10px;"><a href="http://www.indianrail.gov.in/enquiry/StaticPages/StaticEnquiry.jsp?StaticPage=index.html" style="font-size:15px;color:white;" >Indian Railway Website</a></p>
+</div>
+<div class="col-sm-2 font" style="color:white;padding-top:0px;margin-right:40px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;
+font-size:19px;"><a href="#" style="color:#0E1B3D;font-size:18px;">.</a></p>
+<p class="font" style="color:black;line-height:0.9px;padding-bottom:10px;"><a href="https://nr.indianrailways.gov.in" style="font-size:15px;color:white;" >Northern Railway</a></p>
+</div>
+<div class="col-sm-2 font" style="color:white;padding-top:0px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;
+font-size:19px;"><a href="#" style="color:#0E1B3D;font-size:18px;">.</a></p>
+<p style="color:black;line-height:0.9px;padding-bottom:10px;"><a href="https://erail.in" style="font-size:15px;color:white;" >E-Rail</a></p>
+</div>
+
+</div>
+
+<div class="col-sm-12" style="background:#003C72;color:white;">
+<div class="col-sm-12">
+<p style="padding:10px 10px;text-align:center;" class="font">Copyright © 2025 - Supervisors Training Center, Lucknow - All Rights Reserved.</p>
+</div>
+</div>
+   
+</body>
+</html>

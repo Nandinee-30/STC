@@ -1,0 +1,47 @@
+from django.urls import path
+from . import views
+
+
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('index/', views.index, name='index'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact_view, name='contact'),
+    path('contact-table/', views.contact_table, name='contact_table'),
+    path('delete-contact/<int:id>/', views.delete_contact, name='delete_contact'),
+    path('reg/', views.reg, name='reg'),
+    path('certificate/',views.certificate_view,name='certificate'),
+    path('registered-students/', views.view_registered_students, name='registered_students'),
+    path('delete-student-login/<int:id>/', views.delete_student_login, name='delete_student'),
+    path('challan/<path:challan_id>/',views.challan_pdf_view,name='challan'),
+    path('id_card/',views.id_card,name='id_card'),
+    path('profile/', views.view_profile, name='profile'),
+    path('admin_login/', views.admin_login_view, name='admin_login'),
+    path('admin_logout/', views.admin_logout_view, name='admin_logout'),
+    path('admin_panel/', views.admin_panel_view, name='admin_panel'),
+    path('thanku/', views.thanku, name='thanku'),
+    path('batch_allot/', views.batch_allotment_view, name='batch_allot'),
+    path('batch_allot1/', views.batch_allot1_view, name='batch_allot1'),
+    path('batch_allot2/', views.batch_allot2_view, name='batch_allot2'),
+    path('batch_allot3/', views.batch_allot3_view, name='batch_allot3'),
+    path('batch_allot4/', views.batch_allot4_view, name='batch_allot4'),
+    path('batch-allot-table/', views.batch_allot_table, name='batch_allot_table'),
+    path('delete-entry/<path:id>/', views.delete_entry, name='delete_entry'),
+    path('fees_challan/', views.fees_challan_view, name='fees_challan'),
+    path('fees-challan-table/', views.fees_challan_table, name='fees_challan_table'),
+    path('delete-fees-challan/<int:id>/', views.delete_fees_challan, name='delete_fees_challan'),
+    path('lor/', views.lor_submission, name='lor'),
+    path('lor-table/', views.lor_table_view, name='lor_table'),
+    path('delete_lor/<int:id>/', views.delete_lor, name='delete_lor'),
+    path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
+    path('student_login/', views.student_login, name='student_login'),
+    path('forget-password/', views.forget_password_view, name='forget_password'),
+    path('update-is-active/', views.update_is_active, name='update_is_active'),
+    path('training-letter/', views.training_letter_view, name='training_letter'),
+    path('training-pdf/', views.training_pdf_view, name='training_pdf'),
+    path('download-approved-certificates/',views.download_approved_certificates, name="download_approved_certificates"),
+    path('get-project-counts/', views.get_project_counts, name='get_project_counts'),
+    path('update-idcard-approval/', views.update_idcard_approval, name='update_idcard_approval'),
+
+]

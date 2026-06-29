@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vocational Training Letter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            margin: 40px;
+        }
+        .heading {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .sub-heading {
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 4px;
+            text-align: center;
+        }
+        .conditions {
+            margin-top: 20px;
+        }
+        .conditions ol {
+            padding-left: 18px;
+        }
+        @media print {
+            #downloadBtn {
+                display: none;
+            }
+        }
+
+        #downloadBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        #downloadBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div id="trainingPdf" style="width: 700px; margin: auto; padding: 20px;">
+<h3 style="text-align:center;">{{entry.batch_code}}/{{entry.project_code}}<br></h3>
+<p style="text-align:right"><strong>Date:</strong> {{current_date}}</p>
+
+<p><b>{{entry.report_to}}<br></b>
+N. Rly, Loco Workshop, Charbagh, Lucknow.</p>
+
+<p><strong>Sub: - {{entry.duration}} Training Projects Vocational Training to BE/Diploma Students.</strong></p>
+
+<p>In Subject to the above, the undernoted trainee is directed to your end for vocational training from 
+    <strong>&nbsp;{{entry.date|date:"d/m/Y"}}&nbsp; to&nbsp; {{end_date|date:"d/m/Y"}}</strong>.
+The project allotted to the trainee is mentioned as under.</p>
+
+<p><strong>Project title & training area:</strong> {{entry.project}}</p>
+
+<div class="heading">Trainee Details</div>
+<table>
+    <thead>
+        <tr>
+            <th>S. No</th>
+            <th>Unique ID</th>
+            <th>Name</th>
+            <th>College</th>
+            <th>Branch</th>
+            <th>Year</th>
+            <th>Course</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ entry.uid }}</td>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.college }}</td>
+            <td>{{ entry.eng_branch }}</td>
+            <td>{{ entry.year }}</td>
+            <td>{{ entry.course }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p class="sub-heading" style="margin-top:20px;"><b>Kindly release him and send his attendance along with the project report. 
+    Necessary assistance may be provided if any.</b></p>
+
+<div class="conditions">
+    <p style="margin-top:30px;"><strong>The vocational training is allowed with following conditions:</strong></p>
+    <ol>
+        <li>The trainee will have to follow all rules and regulations & will maintain high discipline all the time during training.</li>
+        <li>The trainee will not have access to any confidential document.</li>
+        <li>Camera Mobiles are strictly prohibited in the training area. If found, Camera Mobiles will be seized and will be returned after producing Original Bill of Mobile on completion of training.</li>
+        <li>The trainee will have to make his/her own arrangement for boarding lodging and transportation</li>
+        <li>No remuneration in the shape of stipend, salary or allowances of any kind will be paid to trainees by the Railway Administration. No passes or PTO will be issued to them.</li>
+        <li>The trainees will indemnify Railway Administration concerned for any loss or damage to equipment and fittings that may be caused by the trainee during the course of training in workshop area.</li>
+        <li>The trainee shall not be the employees of the Railway Administration and as such will not be entitled to any compensation or damages from the railway Administration under any circumstances and the trainee will not make any claim thereof.</li>
+        <li>The trainee shall be under the control and discipline of Dy. CME concerned</li>
+        <li>This vocational training is purely on the risk and cost of the trainee and can be disallowed at any time without assigning any reason/notice.</li>
+    </ol>
+</div>
+
+<p style="text-align:right; margin-top:60px;"><strong>Course Coordinator,<br>STC/CB/LKO</strong></p>
+
+
+<div>
+    <button id="downloadBtn" onclick="generatePDF()">Download Letter</button>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+    <script>
+    function generatePDF() {
+        const button = document.getElementById('downloadBtn');
+        button.style.display = 'none'; // 👈 hide before print
+
+        const element = document.getElementById('trainingPdf');
+
+        html2pdf().from(element).save('Training_Letter.pdf').then(() => {
+            button.style.display = 'block'; // 👈 show after save
+        });
+    }
+</script>
+
+
+</body>
+</html>

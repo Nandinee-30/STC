@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Batch Allotment - Photo Upload</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f2fd;
+      padding: 30px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      max-width: 600px;
+      width: 100%;
+      background-color: #fff;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .btn-group {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    
+    
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-group a, .btn-group button {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #1a237e;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-group a:hover, .btn-group button:hover {
+      background-color: #3949ab;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #444;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <form id="photoForm" action="/thanku/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+    <input type="hidden" name="email" value="{{ entry.email }}">
+    <input type="hidden" name="uid" value="{{ entry.uid }}">
+    <input type="hidden" name="receipt" value="{{entry.receipt }}">
+    <input type="hidden" name="name" value="{{ entry.name }}">
+    <input type="hidden" name="father" value="{{ entry.father }}">
+    <input type="hidden" name="college" value="{{ entry.college }}">
+    <input type="hidden" name="mobile" value="{{ entry.mobile }}">
+    <input type="hidden" name="address" value="{{ entry.address }}">
+    <input type="hidden" name="course" value="{{ entry.course }}">
+    <input type="hidden" name="year" value="{{ entry.year }}">
+    <input type="hidden" name="duration" value="{{ entry.duration }}">
+    <input type="hidden" name="eng_branch" value="{{ entry.eng_branch }}">
+    <input type="hidden" name="date" value="{{entry.date}}">
+    <input type="hidden" name="batch_code" value="{{entry.batch_code}}">
+    <input type="hidden" name="project_code" value="{{entry.project_code}}">
+    <input type="hidden" name="project" value="{{entry.project}}">
+    <input type="hidden" name="report_to" value="{{entry.report_to}}">
+
+
+
+      <label for="photo">Please upload your passport-size photo <small>(Max 1MB)</small></label>
+      <input type="file" id="photo" name="photo" accept=".jpg,.jpeg,.png" required>
+
+      <p class="note">📧 A copy of your response will be sent to your email.</p>
+     
+      <div class="btn-group">
+        <a href="javascript:history.back()">Back</a>
+        <button type="submit">Next</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("photoForm").addEventListener("submit", function(e) {
+      const fileInput = document.getElementById("photo");
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert("Please upload a photo.");
+        //e.preventDefault();
+        return;
+      }
+
+      if (file.size > 1048576) { // 1MB = 1024 * 1024 = 1048576 bytes
+        alert("File size should not exceed 1MB.");
+        //e.preventDefault();
+        return;
+      }
+
+    });   
+  </script>
+
+</body>
+</html>

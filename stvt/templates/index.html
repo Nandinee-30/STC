@@ -1,0 +1,470 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head> 
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Northern Railway</title>
+<link rel="shortcut&#32;icon" href="https://stccharbagh.in/frontend/images/logoq.jpg"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+	    @import url("https://stccharbagh.in/frontend/css/bootstrap.min.css");
+		@import url("https://stccharbagh.in/frontend/css/font-awesome.min.css");
+		@import url("https://stccharbagh.in/frontend/css/jquery.smartmenus.bootstrap.css");
+		@import url("https://stccharbagh.in/frontend/css/owl.carousel.css");
+		@import url("https://stccharbagh.in/frontend/engine1/style.css");
+        @import url("https://stccharbagh.in/frontend/Scripts/jquery-ui.min.css");
+        @import url("https://stccharbagh.in/frontend/site/writereaddata"); 
+        @import url("https://stccharbagh.in/frontend/css/style2.css");
+        @import url("https://dayndone.com/northern_railway/frontend/en_Themes/demo.css");
+        
+    </style>
+	
+	  <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>	
+    <link rel="stylesheet" type="text/css" href="https://stccharbagh.in/frontend/en_Themes/demo.css" />
+    <link rel="stylesheet" type="text/css" href="https://stccharbagh.in/frontend/en_Themes/style.css" id="MSS" />
+	<link rel="stylesheet" type="text/css" href="https://stccharbagh.in/frontend/css/responsive.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162768160-1"></script>
+
+</head>
+<body class="homebody" style="font-size:16px;">
+
+<style>
+@media only screen and (min-width: 1401px) {
+  #module {
+    left:-12px;
+  }  
+  #training {
+    left:100px;
+    position: relative;
+  }
+  #supervisor {
+    left:-5px;
+    position: relative;
+  } 
+ }
+@media only screen and (max-width: 1400px) {
+   #module {
+    left:12px;
+  }
+#supervisor {
+    /*left:-15px;*/
+     right: -5px;
+    position: relative;
+  } 
+ 
+}
+#header1{
+padding-top:12px;
+margin-top:3px;
+padding-bottom:1px;
+color:white;
+font-family: 'Roboto';font-size: 15px; 
+
+}
+.font{
+    color: white;
+font-family: 'Source Sans Pro';
+}
+#menu{
+color: #0f1f3d;
+}
+#header2{
+padding-top:5px;
+margin-top:3px;
+padding-bottom:1px;
+color:white;
+font-family: 'Roboto';font-size: 5px;
+float:right;
+}
+</style>
+
+<div class="col-sm-12 font" style="background:#003C72; padding: 8px 0;" >
+<div class="row" style="margin: 5px;">
+<div class="col-sm-4"  >
+  <span id="datetime">Loading date and time...</span>
+</div>
+<!-- JavaScript -->
+<script>
+  function updateDateTime() {
+    const now = new Date();
+
+    // Format date and time
+    const options = {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    };
+
+    const formattedDateTime = now.toLocaleString('en-GB', options);
+
+    document.getElementById('datetime').innerText = formattedDateTime;
+  }
+
+  // Update every second
+  setInterval(updateDateTime, 1000);
+  updateDateTime(); // initial call
+</script>
+   
+
+   
+
+<div class="col-sm-6" id="header2">
+  <p style="margin-left:0px;margin: 7px 0px 10px;float:right;"> 
+    <a style="color:white;font-size:15px;padding-right:0px;" href="../index">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a style="color:#FEDA6F;font-size:15px;padding-right:0px" href="../reg">
+    <i style="color:#FEDA6F;" class="fa fa-user"></i> Registration</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a style="color:#FEDA6F;font-size:15px;padding-right:0px" href="../student_login">
+    <i style="color:#FEDA6F;" class="fa fa-key"></i> Login</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a style="color:white;font-size:15px;padding-right:0px" href="{% url 'admin_login'%}">
+    <i class="fa fa-user" title="Admin Login"></i> </a>
+     </p>
+</div>
+
+</div>
+</div>    
+
+<style>
+  .container1 {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .container1 img {vertical-align: middle;height:432px}
+
+  .container1 .content1 {
+    position: absolute;
+    top: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    color: white;
+    height:117px;
+    width: 100%;
+    padding-top: 25px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+  }
+  .container2 {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .container2 img {vertical-align: middle;height:370px}
+
+  .container2 .content {
+    position: absolute;
+    top: 45px;
+    background: rgba(4, 13, 63, 0.8); /* Fallback color */
+    background: rgba(4, 13, 63, 0.8); /* Black background with 0.5 opacity */
+    color: white;
+    height:272px;
+    width: 90%;
+    margin-left:34px;
+    padding-top: 19px;
+    padding-left: 15px;
+    padding-bottom: 0px;
+
+  }
+  #bg{
+    background: #f1f1f1;
+  }
+
+  .tt {
+    margin-top: -20px;
+    font-size: 25px;
+    
+}
+
+img#supervisor {
+    height: 82px;
+    width: 117px;
+    position: relative;
+
+
+
+    top: 5px;
+    left: -2px;
+}
+
+p.font.code.tit {
+    margin-top: -36px;
+    margin-left: 300px;
+    font-size: 25px;
+       
+}
+ @media only screen and (max-width: 800px) {
+  .inner {
+   left: 20px;
+   position: relative;
+ }
+ .container1 img {
+    vertical-align: middle;
+    height: 245px;
+    
+}
+
+.tt {
+    margin-top: -30px;
+    font-size: 17px;
+
+   
+}
+
+.ff {
+    position: absolute;
+    top: 54px;
+      
+}
+.fd {
+    position: relative;
+    top: 30px;
+}
+
+}
+</style>
+
+<div class="col-sm-12">
+  <div class="row">
+       <div class="container1">
+            <img src="https://stccharbagh.in/frontend/images/img/r1.jpeg" alt="Notebook" style="width:100%;">
+            <div class="content1">
+
+<div class="ff" style="text-align: left;">
+  <a href="https://stccharbagh.in/">
+    <img id="supervisor" src="https://stccharbagh.in/frontend/images/img/rail.png" style="vertical-align: top;">
+  </a>
+  <div style="display: inline-block; margin-left: 10px;">
+    <p class="font" style="margin: 0; font-size: 25px;">पर्यवेक्षक प्रशिक्षण केंद्र, लखनऊ</p>
+    <p class="font" style="margin: 0; font-size: 25px;">Supervisors Training Center, Lucknow</p>
+  </div>
+                <div class="fd">		    		
+                    <div class="font code" style="float:right;padding-right:17px;position: relative;bottom: 55px;">
+                        <p style="font-size:18px;margi:-36px 31px 10px;" class="drobtn font"><a href="../contact" style="color:white;font-size:18px;">Contact</a><p>
+                    </div>
+                    <div style="float:right;padding-right:17px;position: relative;bottom: 55px;">
+                        <p style="font-size:18px;margi:-22px 7px 10px;" class="drobtn font"><a href="../about" style="color:white;font-size:18px;">About STC</a><p>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+<div class="container-fluid">
+  <br>
+</div>
+
+<!--head content start-->
+<div  class="col-sm-12 font">
+  <marquee style="font-size:21px;color:black;">
+    <p>Supervisors Training Centre Charbagh was established on 14th January 1956 to cater the training 
+      needs of Technical supervisor of mechanical and electrical department of Northern Railway, earlier it was
+       named as System Training School.</p>
+  </marquee>
+</div>
+
+<style>
+/* Container styles */
+.news-ticker {
+  background: #003C72;
+  color: white;
+  padding: 10px;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Heading stays static */
+.news-ticker h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Scrollable area */
+.ticker-wrapper {
+  overflow: hidden;
+  flex: 1;
+  position: relative;
+}
+
+/* Inner scrolling content */
+.ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 15s linear infinite;
+  font-size: 17px;
+}
+
+/* Link styles */
+.news-ticker a {
+  color: #FEDA6F;
+  text-decoration: none;
+  position: relative;
+  padding-left: 10px;
+}
+
+/* NEW label */
+.news-ticker a::before {
+  content: "NEW";
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Scrolling animation */
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Pulse effect for NEW */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+</style>
+
+<div class="news-ticker">
+  <h2>LATEST NEWS</h2>
+  <div class="ticker-wrapper">
+    <div class="ticker-content">
+      <a href="result.pdf/" target="_blank">
+        Results is Declared!
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--labs-->
+
+<div class="col-sm-12" style="padding-top:10px;">
+  <h2 class="font" style="text-align:center;color:black;font-weight: normal;"><b>Labs</b></h2>
+</div>
+<div  class="col-sm-12" style="padding-top:10px;padding-bottom:30px;">
+  <div class="row">
+
+    <div class="col-md-4" style="margin-left:0px;">
+      <div class="thumbnail">
+        <img src="https://stccharbagh.in/frontend/images/img/automation.jpg" alt="Nature" style="width:100%;height:300px">
+        <div class="caption">
+          <p class="font" style="font-size:19px;color:black;"><b>Automation Lab</b></p>
+          <p class="font" style="line-height: 1.7;font-size:1.60rem;color:black;text-align:justify;font-weight:90px;">An Automation lab has been developed at STC Charbagh. It consist Hydraulic system trainer, Electrical and Electronics Circuit Design and simulation Platform, robotics trainer, PLC Trainer and Sensor workbench, Electro-pneumatic & Electro-hydraulic system trainer, embedded system & measuring instrument trainer. It enables the trainee to get familiar with working of basic Hydraulic system to advanced PLC systems.</p>
+         </div>
+     </div>
+   </div>
+
+   <div class="col-md-4">
+    <div class="thumbnail">
+      <img src="https://stccharbagh.in/frontend/images/img/lab2.jpeg" alt="Nature" style="width:100%;height:300px">
+      <div class="caption">
+        <p class="font" style="font-size:19px;color:black;"><b>WSP Lab</b></p>
+        <p class="font" style="line-height: 1.7;font-size:1.60rem;color:black;text-align:justify;font-weight:90px;">WSP LAB has a 
+          well-furnished training Lab for Wheel Slide Protection system used in LHB Coaches. 
+          The Lab has FIAT bogie with working model of Air Brake system. Different makes of
+          WSP System is also available where practical training about  it's 
+           working and troubleshooting is imparted to the trainees. For better understanding an animated video film has also been developed and displayed though HD LED TV.  
+         </p>
+       </div>
+     </div>
+   </div>
+
+   <div class="col-md-4">
+    <div class="thumbnail">
+      <img src="https://stccharbagh.in/frontend/images/img/lab3.jpeg" alt="Nature" style="width:100%;height:300px">
+      <div class="caption">
+        <p class="font" style="font-size:19px;color:black;"><b>Train Lighting Lab</b></p>
+        <p class="font" style="line-height: 1.7;font-size:1.60rem;color:black;text-align:justify;font-weight:90px;">
+         Train Lighting Lab is developed in STC for imparting knowledge on Train Lighting. The Lab is equipped
+         with ICF & LHB Air Conditioned Coach wiring diagram and model 
+         of various components. The Wiring Diagram Trainer of 2nd AC ICF and also have electrical 
+        meters and gauges, IV couplers ICF & LHB, WRA and other components-models and cut sections.
+      </p>
+     </div>
+   </div>
+ </div>
+</div>	
+</div>
+
+<!--director A.N.Shidqui-->
+<div class="col-sm-12" style="padding-bottom:50px;padding-top:70px;" id="bg">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img src="https://stccharbagh.in/frontend/images/director_image.jpg" alt="Director" style="height:400px;width:100%;margin-left: 0px;">
+        <p class="font" style="color:black;font-size:23px;"><strong>A.N. Siddiqui</strong></p>
+      </div>
+    </div>
+    
+    <div class="col-sm-7">
+
+      <p class="font" style="font-size:25px;color:black;font-weight: normal;"><b>From The Director's Desk</b></p>
+      <p class="font" style="color:black;font-size:18px;font-weight:normal;text-align:justify">Supervisors Training Centre Charbagh (STC/CB), Northern Railway, Lucknow started its journey in 1956 as ‘Systems Training School’ with the objective of training the supervisors of Northern Railway in railway mechanical system. Since then, STC/CB has grown steadily and now offers specialised courses for IR in Mechanical systems, Electrical system, Workplace Management and Resource Management.	</p>   
+      <p class="font" style="color:black;font-size:18px;font-weight: normal;text-align:justify">In a significant step recently, the post of Principle/STC has been elevated in July 2019 to that of Director in SA grade to empower STC in its quest for higher training capabilities. This assumes importance considering the rapid technological and cultural changes taking place in IR and the need to equip frontline Engineers and Managers with relevant knowledge tools. </p>
+      <p class="font" style="color:black;font-size:18px;font-weight: normal;text-align:justify">STC/CB classrooms are fully air-conditioned and now provided with modern teaching aids like Interactive Boards, Visualizers, and Computers etc. The training labs are well equipped with working and cut-section models, self-learning stations, audio-visual content etc. The centre building is now Platinum Green Rated while boasting Wi-Fi connectivity and ‘STC Smart’ mobile App for trainees, demonstrating a judicious mix of technology and care for nature. </p>
+      <p class="font" style="color:black;font-size:18px;font-weight: normal;text-align:justify">Besides the regular Induction and Refresher courses, STC also offers several tailor-made special courses. For instance, some new courses introduced in 2021-22 is Refrigeration, Air conditioning and Train lighting for Artisan & coach attendant. </p>
+      <p class="font" style="color:black;font-size:18px;font-weight: normal;text-align:justify">All units of Northern Railway and also foreign Railways are encouraged to make use of the excellent training opportunity offered by STC/CB. </p>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--head content end-->
+
+<br>
+<div class="container-fluid"></div><br>
+<div class="col-sm-12 footer-bg" style="background:#0E1B3D;background-image:url('https://stccharbagh.in/img/rail-footer.png');background-position: right;background-repeat: no-repeat;padding-top:20px;padding-bottom:20px">
+<div class="col-sm-1"></div>
+
+<div class="col-sm-2 font" style="color:white;padding-top:0px;margin-right:40px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;font-size:19px;">
+<span style="color:#FEDA6F;font-size:18px;border-bottom:3px solid rgba(255,255,255,.3);">Web Links</span></p>
+<p style="color:black;font-size:15px;padding-bottom:10px;line-height:0.9px;"><a href="https://irctc.co.in" style="font-size:15px;color:white;" >IRCTC Website</a></p>
+</div>
+<div class="col-sm-2 font" style="color:white;padding-top:0px;margin-right:40px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;
+font-size:19px;"><a href="#" style="color:#0E1B3D;font-size:18px;">.</a></p>
+<p class="font" style="color:black;line-height:0.9px;padding-bottom:10px;"><a href="http://www.indianrail.gov.in/enquiry/StaticPages/StaticEnquiry.jsp?StaticPage=index.html" style="font-size:15px;color:white;" >Indian Railway Website</a></p>
+</div>
+<div class="col-sm-2 font" style="color:white;padding-top:0px;margin-right:40px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;
+font-size:19px;"><a href="#" style="color:#0E1B3D;font-size:18px;">.</a></p>
+<p class="font" style="color:black;line-height:0.9px;padding-bottom:10px;"><a href="https://nr.indianrailways.gov.in" style="font-size:15px;color:white;" >Northern Railway</a></p>
+</div>
+<div class="col-sm-2 font" style="color:white;padding-top:0px;">
+<p style="border-bottom:1px solid yello;padding-bottom:10px;color:black;
+font-size:19px;"><a href="#" style="color:#0E1B3D;font-size:18px;">.</a></p>
+<p style="color:black;line-height:0.9px;padding-bottom:10px;"><a href="https://erail.in" style="font-size:15px;color:white;" >E-Rail</a></p>
+</div>
+
+</div>
+
+<div class="col-sm-12" style="background:#003C72;color:white;">
+<div class="col-sm-12">
+<p style="padding:10px 10px;text-align:center;" class="font">Copyright © 2025 - Supervisors Training Center, Lucknow - All Rights Reserved.</p>
+</div>
+</div>
+   
+</body>
+</html>

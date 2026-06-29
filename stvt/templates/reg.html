@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration - STC</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    .form-box {
+      background-color: #fff;
+      padding: 35px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 550px;
+    }
+
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #1a237e;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 12px 0 5px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: #1a237e;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #3949ab;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .success-msg {
+      background-color: #d0f8ce;
+      color: #2e7d32;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 15px;
+      margin-bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Student Registration</h2>
+
+    <div class="success-msg" id="successMsg">✅ You are successfully registered!</div>
+
+
+    <form id="registrationForm" method = "POST">
+        {% csrf_token %}
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name"   placeholder="Enter your full name" required />
+
+      <label for="roll">Roll Number</label>
+      <input type="text" id="roll" name="rollno" placeholder="Enter roll number" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" required />
+
+      <label for="mobile">Mobile Number</label>
+      <input type="text" id="mobile" name="mobile" placeholder="Enter mobile number(+91 or 0 not allowed)" required />
+
+      <label for="course">Course</label>
+      <input type="text" id="course" name="course" placeholder="Enter course name" required />
+
+      <label for="branch">Branch</label>
+      <input type="text" id="branch" name="branch" placeholder="Enter branch name" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Create a password" size="20" required />
+
+      <input type="submit" value="Register" />
+    </form>
+
+    <div class="footer">
+      Already registered? <a href="../student_login">Login here</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("registrationForm");
+    const successMsg = document.getElementById("successMsg");
+
+    // Show success message if redirected from a registration
+    if (localStorage.getItem("just_registered") === "true") {
+      successMsg.style.display = "block";
+      localStorage.removeItem("just_registered");
+    }
+
+    form.addEventListener("submit", function (e) {
+     // e.preventDefault();
+
+      if (form.checkValidity()) {
+        // You can also save form data here if needed
+        localStorage.setItem("just_registered", "true");
+        location.reload(); // Refresh same page
+      }
+    });
+  </script>
+
+</body>
+</html>

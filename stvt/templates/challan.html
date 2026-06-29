@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ग्रीष्म कालीन प्रशिक्षण शुल्क पत्र</title>
+  <style>
+            #downloadBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #downloadBtn:hover {
+            background-color: #45a049;
+        }
+  </style>
+</head>
+<body style="font-family: 'Arial', sans-serif; line-height: 1.5; padding: 30px;">
+<div id="challan-content" style="width: 700px; margin: auto; padding: 20px;">
+  <div style="text-align: center; font-size: 18px; font-weight: bold;">
+    उत्तर रेलवे<br><br>
+    <span style="font-size: 16px;">कार्यालय मुख्य कारखाना प्रबंधक, लोको वर्कशाप, चारबाग, लखनऊ</span>
+  </div>
+
+  <div style="margin-top: 20px; font-size: 14px;">
+    संख्या - <span>STC/WTC/{{challan.uid}}</span><br><br>
+    
+    <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+      <span><strong>DCPM / CBS, LKO.</strong></span><br>
+      <span>दिनांक: <strong>{{current_date}}</strong></span>
+    </div>
+    <br>
+    <div>N. Rly, Lucknow.</div>
+  </div>
+  <br><br>
+  <div style="margin-top: 20px; font-weight: bold;">
+    विषय - ग्रीष्म कालीन प्रशिक्षण का ₹ 250/- शुल्क जमा कराने के सम्बन्ध में।
+  </div>
+
+  <div style="margin-top: 20px; text-align: justify;">
+    श्री <strong>{{challan.name}}</strong> का ₹250/- ग्रीष्म कालीन प्रशिक्षण शुल्क को 
+    <strong>Dy. FA&CAO (W)</strong> / कारखाना / चारबाग के पक्ष में मद संख्या: <strong>जेड-650-99</strong> 
+    में जमा कराएं एवं भुगतानक को रसीद देने की कृपा करें।
+  </div>
+
+  <div style="margin-top: 40px;">
+    <div style="float: right; text-align: right;">
+
+      <strong>कृते निदेशक</strong><br>
+      पर्यवेक्षक प्रशिक्षण केंद्र,<br>
+      चारबाग, लखनऊ
+    </div>
+  </div>
+    <p style="text-align: center; margin-top:140px;">
+      <small>This certificate is valid with institute signature</small>
+    </p>
+</div>
+
+
+ <button id="downloadBtn" onclick="generatePDF()">Download Fees Challan</button>
+
+    <!-- ADD THIS SCRIPT FOR html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    
+    <script>
+        function generatePDF() {
+          
+            const element = document.getElementById('challan-content');
+            const opt = {
+      margin:       [0.5, 0.5, 0.5, 0.5], // top, left, bottom, right (in inches)
+      filename:     'Fees_Challan.pdf',
+      image:        { type: 'jpeg', quality: 1 },
+      html2canvas:  {
+        scale: 2, // Higher quality
+        useCORS: true
+      },
+      jsPDF: {
+        unit: 'in',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+            html2pdf().from(element).save('Fees_Challan.pdf');
+        }
+    </script>
+
+
+</body>
+</html>

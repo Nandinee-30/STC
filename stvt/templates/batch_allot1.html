@@ -1,0 +1,136 @@
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Batch Allotment Step 2 - STC</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    .form-box {
+      background-color: #fff;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 550px;
+    }
+
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 12px 0 5px;
+      color: #333;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-group a, .btn-group button {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #1a237e;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-group a:hover, .btn-group button:hover {
+      background-color: #3949ab;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+
+    <form id="batchForm" action="/batch_allot2/" method="post">
+      {% csrf_token %}
+       
+    <input type="hidden" name="id" value="{{ entry.id }}">
+    <input type="hidden" name="email" value="{{ entry.email }}">
+    <input type="hidden" name="uid" value="{{ entry.uid }}">
+    <input type="hidden" name="receipt" value="{{entry.receipt }}">
+    <input type="hidden" name="name" value="{{ entry.name }}">
+    <input type="hidden" name="father" value="{{ entry.father }}">
+    <input type="hidden" name="college" value="{{ entry.college }}">
+    <input type="hidden" name="mobile" value="{{ entry.mobile }}">
+    <input type="hidden" name="address" value="{{ entry.address }}">
+
+      <label for="course">Please select your course</label>
+      <select id="course" name="course" required>
+        <option value="">Choose</option>
+        <option value="Diploma">Diploma</option>
+        <option value="BTech">B.Tech</option>
+        <option value="BCA">BCA</option>
+        <option value="MCA">MCA</option>
+      </select>
+
+      <label for="year">You are in which year of your course?</label>
+      <select id="year" name="year" required>
+        <option value="">Choose</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
+
+      <label for="duration">Please select the duration of your training</label>
+      <select id="duration" name="duration" required>
+        <option value="">Choose</option>
+        <option value="4 weeks">4 weeks</option>
+        <option value="6 weeks">6 weeks</option>
+      </select>
+
+      <label for="eng_branch">Branch (Trade of Engineering)</label>
+      <select id="eng_branch" name="eng_branch" required>
+        <option value="">Choose</option>
+        <option value="Electrical">Electrical</option>
+        <option value="Computer Science Engineering">Computer Science Engineering</option>
+        <option value="Civil">Civil</option>
+        <option value="Mechanical">Mechanical</option>
+      </select>
+
+      <div class="btn-group">
+        <a href="../batch_allot">Back</a>
+        <button type="submit">Next</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+  document.getElementById("batchForm").addEventListener("submit", function () {
+    const duration = document.getElementById("duration").value;
+    localStorage.setItem("training_duration", duration); // ✅ Save duration
+  });
+</script>
+
+
+
+</body>
+</html>

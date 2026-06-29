@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .card {
+      background: #fff;
+      padding: 25px;
+      width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      color: #0077cc;
+      margin-bottom: 10px;
+    }
+    .card button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #0077cc;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .card button:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body class="bg-gray-100" style="background: #f0f4f8; font-family: Arial, sans-serif;">
+
+  <!-- Logout Button -->
+  <div class="fixed top-4 right-4">
+    <button onclick="logout()" class="bg-gray-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded shadow transition">
+      Logout
+    </button><br>
+  </div>
+  <div class="flex flex-col lg:flex-row min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-60 bg-blue-800 text-white p-4">
+      <h2 class="text-xl font-bold text-center mb-6">Student Dashboard</h2>
+      <button class="w-full py-2 mb-3 bg-blue-600 rounded hover:bg-blue-500 transition"><a href="{% url 'profile' %}">View Profile</a></button>
+      <button class="w-full py-2 mb-3 bg-blue-600 rounded hover:bg-blue-500 transition"><a href="{% url 'lor' %}">LOR Submission</a></button>
+      <button class="w-full py-2 mb-3 bg-blue-600 rounded hover:bg-blue-500 transition"><a href="{% url 'fees_challan' %}">Fees Challan</a></button>
+      <button class="w-full py-2 mb-3 bg-blue-600 rounded hover:bg-blue-500 transition"><a href="{% url 'batch_allot' %}">Batch Allotment</a></button>
+      {% if idcard_approved %}
+      <a href="{% url 'id_card' %}" class="w-full py-2 mb-3 bg-blue-600 rounded hover:bg-blue-500 transition block text-center">ID Card</a>
+      {% else %}
+  <button class="w-full py-2 mb-3 bg-gray-400 text-white rounded cursor-not-allowed" disabled>
+    Download (Not Approved)
+  </button>
+{% endif %}
+      {% if approved %}
+  <a href="{% url 'certificate' %}" class="w-full py-2 mb-3 bg-blue-600 text-white rounded hover:bg-blue-500 transition block text-center">
+    Download Certificate
+  </a>
+{% else %}
+  <button class="w-full py-2 mb-3 bg-gray-400 text-white rounded cursor-not-allowed" disabled>
+    Download (Not Approved)
+  </button>
+{% endif %}
+
+
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4">
+      <h1 class="text-2xl font-semibold mb-4">Welcome {{student.name}}!</h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div class="card">
+          <h3 class="font-semibold text-lg mb-2">View Profile</h3>
+          <p class="text-sm text-gray-600 mb-4">See your personal & training details</p>
+          <button><a href="{% url 'profile' %}">Go</a></button>
+        </div>
+
+        <div class="card">
+          <h3 class="font-semibold text-lg mb-2">LOR Submission</h3>
+          <p class="text-sm text-gray-600 mb-4">Submit LOR then complete registration</p>
+          <button><a href="{% url 'lor' %}">Go</a></button>
+        </div>
+
+        <div class="card">
+          <h3 class="font-semibold text-lg mb-2">Fees Challan</h3>
+          <p class="text-sm text-gray-600 mb-4">Fill this form</p>
+          <button><a href="{% url 'fees_challan' %}">Go</a></button>
+        </div>
+
+        <div class="card">
+          <h3 class="font-semibold text-lg mb-2">Batch Allotment Form</h3>
+          <p class="text-sm text-gray-600 mb-4">Fill your details</p>
+          <button><a href="{% url 'batch_allot' %}">Go</a></button>
+        </div>
+        
+        <div class="card">
+          <h3 class="font-semibold text-lg mb-2">ID Card</h3>
+          <p class="text-sm text-gray-600 mb-4">Download your ID card</p>
+           {% if idcard_approved %}
+          <button><a href="{% url 'id_card' %}">Download</a></button>
+           {% else %}
+  <button class="w-full py-2 mb-3 bg-gray-400 text-white rounded cursor-not-allowed" disabled>
+    Download (Not Approved)
+    </button>
+  {% endif %}
+        </div>
+
+        <div class="card">
+          <h3 class="font-semibold text-lg mb-2">Download Certificate</h3>
+          <p class="text-sm text-gray-600 mb-4">Get your training certificate</p>
+          {% if approved %}
+          <button><a href="{% url 'certificate'%}">Download</a></button>
+          {% else %}
+  <button class="w-full py-2 mb-3 bg-gray-400 text-white rounded cursor-not-allowed" disabled>
+    Download (Not Approved)
+  </button>
+  {% endif %}
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function logout() {
+      localStorage.clear(); // Clear any saved data
+      alert("You have been logged out.");
+      window.location.href = "../index"; // Redirect to login page
+    }
+  </script>
+
+</body>
+</html>

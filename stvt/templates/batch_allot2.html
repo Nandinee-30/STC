@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Batch Allotment Step 3 - STC</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e3f2fd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    .form-box {
+      background-color: #fff;
+      padding: 35px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 550px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 12px 0 5px;
+      color: #333;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-group a, .btn-group button {
+      text-decoration: none;
+      padding: 10px 20px;
+      background-color: #1a237e;
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-group a:hover, .btn-group button:hover {
+      background-color: #3949ab;
+    }
+  </style>
+</head>
+<script>
+  document.getElementById("step3form").addEventListener("submit", function (e) {
+    const duration = document.getElementById("duration").value;
+    if (!this.checkValidity()) {
+      //e.preventDefault();
+      alert("Please fill all the required fields correctly.");
+    } else {
+      localStorage.setItem("training_duration", duration);  // 👈 Save to localStorage
+    }
+  });
+</script>
+
+<body>
+
+  <div class="form-box">
+
+    <form id="step3form" action="/batch_allot3/" method="POST">
+      {% csrf_token %}
+
+
+    <input type="hidden" name="id" value="{{ entry.id }}">
+    <input type="hidden" name="email" value="{{ entry.email }}">
+    <input type="hidden" name="uid" value="{{ entry.uid }}">
+    <input type="hidden" name="receipt" value="{{entry.receipt }}">
+    <input type="hidden" name="name" value="{{ entry.name }}">
+    <input type="hidden" name="father" value="{{ entry.father }}">
+    <input type="hidden" name="college" value="{{ entry.college }}">
+    <input type="hidden" name="mobile" value="{{ entry.mobile }}">
+    <input type="hidden" name="address" value="{{ entry.address }}">
+    <input type="hidden" name="course" value="{{ entry.course }}">
+    <input type="hidden" name="year" value="{{ entry.year }}">
+    <input type="hidden" name="duration" value="{{ entry.duration }}">
+    <input type="hidden" name="eng_branch" value="{{ entry.eng_branch }}">
+
+
+      <label for="date">Please select the starting date of your training slot</label>
+      <select id="date" name="date" required>
+        <option value="">Choose</option>
+      </select>
+
+      <label for="batch_code">Batch Code</label>
+      <select id="batch_code" name="batch_code" required>
+        <option value="">Choose</option>
+      </select>
+
+      <div class="btn-group">  
+        <a href="javascript:history.back()">Back</a>
+        <button type="submit">Next</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+window.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("step3form");
+  const startDateSelect = document.getElementById("date");
+  const batchCodeSelect = document.getElementById("batch_code");
+
+  // Map of dates to batch codes
+  const batchCodeMap = {
+    "02-06-2025": '06-A',
+    "09-06-2025": '06-B',
+    "16-06-2025": '06-C',
+    "23-06-2025": '06-D',
+    "30-06-2025": '06-E',
+    "07-07-2025": '07-A'
+  };
+
+  // Populate the date dropdown
+  for (const date in batchCodeMap) {
+    const option = document.createElement("option");
+    option.value = date;
+    option.textContent = date;
+    startDateSelect.appendChild(option);
+  }
+
+  // When date changes, update batch code
+  startDateSelect.addEventListener("change", () => {
+    const selectedDate = startDateSelect.value;
+    const batchCode = batchCodeMap[selectedDate];
+
+    batchCodeSelect.innerHTML = '<option value="">Choose</option>';
+
+    if (batchCode) {
+      const option = document.createElement("option");
+      option.value = batchCode;
+      option.textContent = batchCode;
+      batchCodeSelect.appendChild(option);
+      batchCodeSelect.value = batchCode; // Auto-select it
+    }
+  });
+
+  // Save date and duration to localStorage on submit
+  form.addEventListener("submit", function (e) {
+    if (!this.checkValidity()) {
+      e.preventDefault();
+      alert("Please select both date and batch code.");
+    } else {
+      localStorage.setItem("date", startDateSelect.value);
+      const duration = "{{ entry.duration }}";
+      localStorage.setItem("training_duration", duration);
+    }
+  });
+});
+</script>
+
+
+</body>
+</html>
