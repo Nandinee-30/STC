@@ -158,7 +158,7 @@ If you'd like to contribute:
 
 💼 Aspiring Software Developer
 
-📧 Email: *Add your email here*
+📧 Email: *nandu705228@gmail.com*
 
 🌐 GitHub: https://github.com/Nandinee-30
 
